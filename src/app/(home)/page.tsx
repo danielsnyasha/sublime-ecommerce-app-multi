@@ -1,25 +1,11 @@
-import configPromise from '@payload-config';
-import { getPayload } from 'payload';
+import React from 'react'
 
-// Next.js Server Component — async because we await data before render
-const Home = async () => {
-  const payload = await getPayload({
-    // if your configPromise is a promise, await it; otherwise pass directly
-    config: await configPromise,
-  });
-
-  const data = await payload.find({
-    collection: "categories"
-  })
-
-  // You can now query collections, globals, etc.
-  // const posts = await payload.find({ collection: 'posts' });
-
+const Home = () => {
   return (
-    <div className="p-4">
-      {JSON.stringify(data, null)}
+    <div>
+      Home Page
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
