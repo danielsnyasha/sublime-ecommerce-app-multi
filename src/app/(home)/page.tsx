@@ -1,30 +1,25 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
-import { Textarea } from "@/components/ui/textarea";
+import configPromise from '@payload-config';
+import { getPayload } from 'payload';
 
-const Home = () => {
+// Next.js Server Component — async because we await data before render
+const Home = async () => {
+  const payload = await getPayload({
+    // if your configPromise is a promise, await it; otherwise pass directly
+    config: await configPromise,
+  });
+
+  const data = await payload.find({
+    collection: "categories"
+  })
+
+  // You can now query collections, globals, etc.
+  // const posts = await payload.find({ collection: 'posts' });
+
   return (
     <div className="p-4">
-  <div className="flex flex-col gap-y-4">
-    <div>
-    <Button variant={"elevated"}>Hello World!</Button>
+      {JSON.stringify(data, null)}
     </div>
-    <div>
-      <Input placeholder="I am an input"/>
-    </div>
-    <div>
-      <Progress value={50}/>
-    </div>
-    <div>
-      <Textarea value="I am a text area"/>
-    </div>
-    <div>
-      <Checkbox/>
-    </div>
-  </div>
-  </div>);
-}
+  );
+};
 
 export default Home;
