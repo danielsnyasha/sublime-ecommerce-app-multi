@@ -35,6 +35,6 @@ export default function SubcategoryMenu({category, isOpen,position}: Props) {
         
         
         
-        SubcategoryMenu</div>
+        </div>
   )
 }
